@@ -1,0 +1,46 @@
+module github.com/jessestuart/clickhouse-operator
+
+go 1.12
+
+require (
+	github.com/MakeNowJust/heredoc v0.0.0-20171113091838-e9091a26100e
+	github.com/altinity/clickhouse-operator v0.0.0-20190627165231-3d3526e9eeb1
+	github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973
+	github.com/davecgh/go-spew v1.1.1
+	github.com/ghodss/yaml v1.0.0
+	github.com/gogo/protobuf v1.2.0
+	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b
+	github.com/golang/groupcache v0.0.0-20181024230925-c65c006176ff
+	github.com/golang/protobuf v1.2.0
+	github.com/google/gofuzz v0.0.0-20170612174753-24818f796faf
+	github.com/googleapis/gnostic v0.2.0
+	github.com/hashicorp/golang-lru v0.5.0
+	github.com/howeyc/gopass v0.0.0-20170109162249-bf9dde6d0d2c
+	github.com/imdario/mergo v0.3.6
+	github.com/json-iterator/go v1.1.5
+	github.com/mailru/go-clickhouse v1.1.0
+	github.com/matttproud/golang_protobuf_extensions v1.0.1
+	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
+	github.com/modern-go/reflect2 v0.0.0-20180701023420-4b7aa43c6742
+	github.com/prometheus/client_golang v0.9.2
+	github.com/prometheus/client_model v0.0.0-20190129233127-fd36f4220a90
+	github.com/prometheus/common v0.2.0
+	github.com/prometheus/procfs v0.0.0-20190219184716-e4d4a2206da0
+	github.com/r3labs/diff v0.0.0-20190117134156-85e103916027
+	github.com/spf13/pflag v1.0.3
+	golang.org/x/crypto v0.0.0-20190103213133-ff983b9c42bc
+	golang.org/x/net v0.0.0-20190119204137-ed066c81e75e
+	golang.org/x/sys v0.0.0-20190121090251-770c60269bf0
+	golang.org/x/text v0.3.0
+	golang.org/x/time v0.0.0-20181108054448-85acf8d2951c
+	golang.org/x/tools v0.0.0-20190121143147-24cd39ecf745
+	gopkg.in/d4l3k/messagediff.v1 v1.2.1
+	gopkg.in/inf.v0 v0.9.1
+	gopkg.in/yaml.v2 v2.2.2
+	k8s.io/api v0.0.0-20181221193117-173ce66c1e39
+	k8s.io/apimachinery v0.0.0-20190116203031-d49e237a2683
+	k8s.io/client-go v7.0.0+incompatible
+	k8s.io/code-generator v0.0.0-20180228050103-7ead8f38b01c
+	k8s.io/gengo v0.0.0-20171127234338-b6c426f7730e
+	k8s.io/kube-openapi v0.0.0-20190115222348-ced9eb3070a5
+)
