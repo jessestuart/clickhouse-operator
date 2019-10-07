@@ -23,15 +23,20 @@ var ddls = []string{
 			f64 Float64,
 			s   String,
 			s2  String,
-			a   Array(Int16),
+			a16 Array(Int16),
+			a8  Array(UInt8),
 			d   Date,
 			t   DateTime,
-			e   Enum8('one'=1, 'two'=2, 'three'=3)
+			e   Enum8('one'=1, 'two'=2, 'three'=3),
+			d32 Decimal32(4),
+			d64 Decimal64(4),
+			d128 Decimal128(4),
+			d10 Decimal(10, 4)
 	) ENGINE = Memory`,
 	`INSERT INTO data VALUES
-	 	(-1, 1, 1.0, '1', '1', [1], '2011-03-06', '2011-03-06 06:20:00', 'one'),
-	 	(-2, 2, 2.0, '2', '2', [2], '2012-05-31', '2012-05-31 11:20:00', 'two'),
-	 	(-3, 3, 3.0, '3', '2', [3], '2016-04-04', '2016-04-04 11:30:00', 'three')
+	 	(-1, 1, 1.0, '1', '1', [1], [10], '2011-03-06', '2011-03-06 06:20:00', 'one',   '10', '100', '1000', '1'),
+	 	(-2, 2, 2.0, '2', '2', [2], [20], '2012-05-31', '2012-05-31 11:20:00', 'two',   '30', '300', '2000', '2'),
+	 	(-3, 3, 3.0, '3', '2', [3], [30], '2016-04-04', '2016-04-04 11:30:00', 'three', '40', '400', '3000', '3')
 	`,
 }
 
@@ -44,7 +49,8 @@ type dbInit struct {
 
 type chSuite struct {
 	suite.Suite
-	conn *sql.DB
+	conn                *sql.DB
+	connWithCompression *sql.DB
 }
 
 func (s *chSuite) SetupSuite() {
@@ -52,15 +58,24 @@ func (s *chSuite) SetupSuite() {
 	if len(dsn) == 0 {
 		dsn = "http://localhost:8123/default"
 	}
+
 	conn, err := sql.Open("clickhouse", dsn)
 	s.Require().NoError(err)
 	s.Require().NoError(initialzer.Do(conn))
 	s.conn = conn
+
+	connWithCompression, err := sql.Open("clickhouse", dsn+"?enable_http_compression=1")
+	s.Require().NoError(err)
+	s.connWithCompression = connWithCompression
 }
 
 func (s *chSuite) TearDownSuite() {
 	s.conn.Close()
 	_, err := s.conn.Query("SELECT 1")
+	s.EqualError(err, "sql: database is closed")
+
+	s.connWithCompression.Close()
+	_, err = s.connWithCompression.Query("SELECT 1")
 	s.EqualError(err, "sql: database is closed")
 }
 

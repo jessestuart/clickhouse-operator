@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2017 TSUYUSATO Kitsune
+// Copyright (c) 2014-2019 TSUYUSATO Kitsune
 // This software is released under the MIT License.
 // http://opensource.org/licenses/mit-license.php
 
@@ -6,9 +6,8 @@ package heredoc_test
 
 import (
 	"fmt"
+	"github.com/MakeNowJust/heredoc/v2"
 )
-
-import "github.com/MakeNowJust/heredoc"
 
 func ExampleDoc_lipsum() {
 	fmt.Print(heredoc.Doc(`
@@ -48,7 +47,7 @@ func ExampleDoc_spec() {
 func ExampleDocf() {
 	libName := "github.com/MakeNowJust/heredoc"
 	author := "TSUYUSATO Kitsune (@MakeNowJust)"
-	fmt.Printf(heredoc.Docf(`
+	fmt.Print(heredoc.Docf(`
 		Library Name  : %s
 		Author        : %s
 		Repository URL: http://%s.git
